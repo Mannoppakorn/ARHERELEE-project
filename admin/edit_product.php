@@ -17,18 +17,18 @@
         $product_price = $_POST['product_price'];
         $product_image = $_FILES['product_image']['name'];
         $product_image_tmp_name = $_FILES['product_image']['tmp_name'];
-        $product_image_folder = '../img/'.$product_image;
+        $product_image_folder = '../products/'.$product_image;
 
         $update = "UPDATE product SET product_name='$product_name', category_id='$product_category', price='$product_price', image='$product_image' WHERE product_id = $id";
 
-        $result = mysqli_query($conn, $update);
+        $result = mysqli_query($condb, $update);
 
         if($result) {
             move_uploaded_file($product_image_tmp_name, $product_image_folder);
             header("Loacation: edit_product.php");
         }
         else {
-            echo "Failed: " . mysqli_error($conn);
+            echo "Failed: " . mysqli_error($condb);
         }
     }
     
@@ -123,7 +123,7 @@
 
                     <?php
 
-                        $select = mysqli_query($conn, "SELECT * FROM product WHERE product_id = $id");
+                        $select = mysqli_query($condb, "SELECT * FROM product WHERE product_id = $id");
                         
                         while($row = mysqli_fetch_assoc($select)){
 
@@ -207,7 +207,7 @@
                     <?php 
                     if(isset($_SESSION['staff_login'])){
                         $staff_id = $_SESSION['staff_login'];
-                        $select = mysqli_query($conn, "SELECT * FROM staff_info si, staff_position sp WHERE staff_id = $staff_id AND si.position_id = sp.position_id");
+                        $select = mysqli_query($condb, "SELECT * FROM staff_info si, staff_position sp WHERE staff_id = $staff_id AND si.position_id = sp.position_id");
                         $row = mysqli_fetch_assoc($select);
                     }
                     ?>

@@ -1,13 +1,13 @@
 <?php
 //เรียกใช้งานไฟล์เชื่อมต่อฐานข้อมูล
-require_once 'condb.php';
+require_once '../config/db.php';
 //query
 $query = "SELECT * FROM seat_reserve sr,seat_type st WHERE sr.reserve_id=$_GET[id] AND sr.seat_type_id=st.seat_type_id";
 $result = mysqli_query($condb, $query);
 $row = mysqli_fetch_array($result);
 //print_r($row);
     session_start();
-	require_once '../db.php';
+	require_once '../config/db.php';
     if(!isset($_SESSION['user_login'])){
         header('location:../beforelogin/home.php');
         // echo 'ไม่มีข้อมูล';

@@ -1,7 +1,7 @@
 <?php
 
 	session_start();
-	require_once 'condb.php';
+	require_once '../config/db.php';
     if(!isset($_SESSION['user_login'])){
         header('location:../beforelogin/home.php');
         // echo 'ไม่มีข้อมูล';
@@ -21,7 +21,7 @@
         <link href="https://cdn.jsdelivr.net/npm/remixicon@3.2.0/fonts/remixicon.css" rel="stylesheet">
         <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-rbsA2VBKQhggwzxH7pPCaAqO46MgnOM80zW1RWuH61DGLwZJEdK2Kadq2F9CUG65" crossorigin="anonymous">
         <link href="https://fonts.googleapis.com/css2?family=Catamaran:wght@100;300&family=Poppins:wght@600&display=swap" rel="stylesheet">
-        <link rel="stylesheet" href="/database_project/beforelogin/style.css">
+        <link rel="stylesheet" href="../beforelogin/style.css">
     </head>
 
     <body>

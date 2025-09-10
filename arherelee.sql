@@ -1,11 +1,11 @@
 -- phpMyAdmin SQL Dump
--- version 5.2.0
+-- version 5.2.1
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Sep 09, 2025 at 08:15 PM
--- Server version: 10.4.27-MariaDB
--- PHP Version: 8.0.25
+-- Generation Time: Sep 10, 2025 at 02:44 PM
+-- Server version: 10.4.32-MariaDB
+-- PHP Version: 8.0.30
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 START TRANSACTION;
@@ -64,7 +64,9 @@ INSERT INTO `billing` (`order_id`, `total_price`, `order_type_id`, `payment_id`,
 (37, 80, 'OT002', 'PAY2', NULL, 1008),
 (38, 30, 'OT002', 'PAY2', NULL, 1008),
 (39, 120, 'OT001', 'PAY1', NULL, 1008),
-(40, 100, 'OT001', 'PAY1', NULL, 1008);
+(40, 100, 'OT001', 'PAY1', NULL, 1008),
+(41, 130, 'OT001', 'PAY1', NULL, 1007),
+(42, 15, 'OT002', 'PAY2', NULL, 1009);
 
 -- --------------------------------------------------------
 
@@ -150,7 +152,6 @@ CREATE TABLE `payment_card` (
 INSERT INTO `payment_card` (`card_number`, `cvv`, `expire_month`, `crad_type_id`) VALUES
 ('', 'f', '0000-00-00', NULL),
 ('1234567891234567', '555', '0000-00-00', NULL),
-('4545645645646', '454', '0000-00-00', NULL),
 ('5048370016380941', '929', '2026-03-24', 'CREDIT'),
 ('5048370020372645', '888', '2024-04-09', 'CREDIT'),
 ('5048370048813661', '335', '2024-12-27', 'CREDIT'),
@@ -1126,9 +1127,9 @@ INSERT INTO `payment_card` (`card_number`, `cvv`, `expire_month`, `crad_type_id`
 ('5108759366234152', '280', '2024-08-27', 'CREDIT'),
 ('5108759379367064', '321', '2022-07-12', 'CREDIT'),
 ('5108759447921298', '275', '2025-01-10', 'CREDIT'),
-('5108759466453157', '386', '2024-11-13', 'CREDIT');
+('5108759466453157', '386', '2024-11-13', 'CREDIT'),
+('5108759485899034', '529', '2026-04-21', 'CREDIT');
 INSERT INTO `payment_card` (`card_number`, `cvv`, `expire_month`, `crad_type_id`) VALUES
-('5108759485899034', '529', '2026-04-21', 'CREDIT'),
 ('5108759599348209', '643', '2023-07-30', 'CREDIT'),
 ('5108759610542517', '919', '2025-07-11', 'CREDIT'),
 ('5108759621847418', '302', '2025-07-24', 'CREDIT'),
@@ -1152,6 +1153,7 @@ INSERT INTO `payment_card` (`card_number`, `cvv`, `expire_month`, `crad_type_id`
 ('5108759994933175', '324', '2025-05-28', 'CREDIT'),
 ('5108759995484509', '449', '2023-11-01', 'CREDIT'),
 ('5108759999891154', '693', '2024-12-12', 'CREDIT'),
+('5465464546', '554', '0000-00-00', NULL),
 ('78459', '999', '0000-00-00', NULL);
 
 -- --------------------------------------------------------
@@ -1215,7 +1217,7 @@ INSERT INTO `product` (`product_id`, `category_id`, `product_name`, `price`, `im
 (37, 'CG004', 'กะหรี่ปั๊บ', 60, 'product21.jpg'),
 (38, 'CG001', 'ทอดมันกุ้ง', 60, 'product23.jpg'),
 (40, 'CG002', 'ข้าวมันไก่่', 60, 'ข้าวมันไก่.jpg'),
-(42, 'CG005', 'อเมริกาโน่', 50, 'อเมริกาโน่.jpg');
+(42, 'CG005', 'อเมริกาโน พรีเมียม', 60, 'อเมริกาโน่พรีเมียม.png');
 
 -- --------------------------------------------------------
 
@@ -1239,8 +1241,7 @@ INSERT INTO `promotion` (`promotion_id`, `expire_date`, `discount`, `minimum_cos
 ('D00002', '2024-01-01 00:00:00', 30, 100),
 ('D00003', '2023-05-31 00:00:00', 50, 200),
 ('NEWUSER10', '2023-05-02 00:00:00', 10, 60),
-('OLDUSER20', '2023-06-03 00:00:00', 20, 80),
-('USER20', '2023-06-10 00:00:00', 20, 100);
+('OLDUSER20', '2023-06-03 00:00:00', 20, 80);
 
 -- --------------------------------------------------------
 
@@ -1261,19 +1262,19 @@ CREATE TABLE `seat_reserve` (
 --
 
 INSERT INTO `seat_reserve` (`reserve_id`, `table_name`, `table_status`, `seat_type_id`, `user_id`) VALUES
-(1, 'A01', 1, 'SS', 1008),
+(1, 'A01', 0, 'SS', NULL),
 (2, 'A02', 0, 'SS', NULL),
-(3, 'A03', 1, 'SS', 1),
-(4, 'A04', 1, 'SS', 1007),
-(5, 'A05', 1, 'SS', 1008),
+(3, 'A03', 0, 'SS', NULL),
+(4, 'A04', 0, 'SS', NULL),
+(5, 'A05', 0, 'SS', NULL),
 (6, 'B01', 0, 'SM', NULL),
 (7, 'B02', 0, 'SM', NULL),
 (8, 'B03', 0, 'SM', NULL),
 (9, 'B04', 0, 'SM', NULL),
-(10, 'B05', 1, 'SM', 1008),
+(10, 'B05', 0, 'SM', NULL),
 (11, 'C01', 0, 'SL', NULL),
 (12, 'C02', 0, 'SL', NULL),
-(13, 'C03', 1, 'SL', 17),
+(13, 'C03', 0, 'SL', NULL),
 (14, 'C04', 0, 'SL', NULL),
 (15, 'C05', 0, 'SL', NULL),
 (16, 'D01', 0, 'SS', NULL),
@@ -2405,8 +2406,9 @@ INSERT INTO `user` (`user_id`, `user_firstname`, `user_lastname`, `user_tel`, `u
 (1002, 'test', 'test', '0123131243', '2023-05-29', 'M', 'test@test.co', 'pass', NULL),
 (1005, 'benz', 'apy', '0882952668', '2023-05-31', 'F', 'aphinya254472@gmail.com', '123456', '78459'),
 (1006, 'asad', 'asdad', '0882952668', '2023-05-17', 'M', 'noppakorn.man01@gmail.com', '123456', '1234567891234567'),
-(1007, 'Noppakorn', 'Sorndech', '0818124902', '2024-02-15', 'M', 'man.noppakorn@gmail.com', '123456', '4545645645646'),
-(1008, 'Noppoakorn', 'Sorndech', '0945128589', '2025-09-09', 'M', 'noppakorn.man@mail.kmutt.ac.th', '1111', '');
+(1007, 'Noppakorn', 'Sorndech', '0818566995', '2024-02-15', 'M', 'man.noppakorn@gmail.com', '1111', '5465464546'),
+(1008, 'Noppoakorn', 'Sorndech', '0945128589', '2025-09-09', 'M', 'noppakorn.man@mail.kmutt.ac.th', '1111', ''),
+(1009, 'test', '001', '0469522165', '2025-09-17', 'F', 'test001@mail.com', '123456', NULL);
 
 -- --------------------------------------------------------
 
@@ -3045,7 +3047,7 @@ INSERT INTO `user_address` (`user_address_id`, `user_id`, `user_address_line1`, 
 (614, 614, 'Room 1654', '57 Esker Trail', 'São Francisco do Sul', '', '89240'),
 (615, 1003, '31/199', '', '-', 'Bangkok', '10140'),
 (616, 1005, '31/199', '', '-', 'Bangkok', '10140'),
-(617, 1007, '31/199 พัฒนาซอย1/4 หมู่3 ตำบลบางหญ้าแพรก', 'อำเภอเมืองสมุทรสาคร จังหวัดสมุทรสาคร', 'สมุทรสาคร', 'ประเทศไทย', '74000'),
+(617, 1007, '31/199 หมู่3 ตำบล บางหญ้าแพรก', '45669966', 'สมุทรสาคร', 'เมืองสมุทสาคร', '74000'),
 (618, 1008, '31/199 พัฒนาซอย1/4 หมู่3 ตำบลบางหญ้าแพรก', 'อำเภอเมืองสมุทรสาคร จังหวัดสมุทรสาคร', 'สมุทรสาคร', 'ประเทศไทย', '74000');
 
 --
@@ -3166,13 +3168,13 @@ ALTER TABLE `user_address`
 -- AUTO_INCREMENT for table `billing`
 --
 ALTER TABLE `billing`
-  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=41;
+  MODIFY `order_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=43;
 
 --
 -- AUTO_INCREMENT for table `cart`
 --
 ALTER TABLE `cart`
-  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=85;
+  MODIFY `cart_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=90;
 
 --
 -- AUTO_INCREMENT for table `product`
@@ -3202,7 +3204,7 @@ ALTER TABLE `staff_info`
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1009;
+  MODIFY `user_id` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=1010;
 
 --
 -- AUTO_INCREMENT for table `user_address`
